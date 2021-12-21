@@ -3,11 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+;
+import { UserpageComponent } from './register/userpage/userpage.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
   { path: 'login', component: LoginComponent },
-  { path: 'admin', component: AdminComponent}
+  { path: 'admin', component: AdminComponent},
+  { path: 'register',component:RegisterComponent},
+  {path:'userpage',component:UserpageComponent},
+  {path:'userupdate/:id',component:RegisterComponent}
 ];
 
 

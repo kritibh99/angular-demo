@@ -1,0 +1,64 @@
+  <div class="card">
+    
+    <div class="card-body">
+      <form class="row g-3 needs-validation" #f="ngForm" novalidate>
+        <div class="form-row">
+          <legend>{{addressTitle}} 
+          </legend>
+          <div class="col-md-4 position-relative">
+            <label for="validationTooltip01" class="form-label">Address</label>
+            <input type="text" name="address" [(ngModel)]="model.address" minlength="5" name="address"  placeholder="Enter Address" class="form-control" required>
+            <div class="text-danger" *ngIf="f.controls['address'].dirty && f.controls['address'].invalid">
+              <p *ngIf="f.controls['address'].errors?.['required']">
+                Address is required field!
+              </p>
+              <p *ngIf="f.controls['address'].errors?.['minlength']">
+                Name is required with min length of 5 of alphabet character or white space
+              </p>
+            </div>
+            
+          </div>
+    
+        </div>
+         
+  
+        <div class="col-md-4 position-relative">
+          <label for="validationTooltip01" class="form-label">City</label>
+          <input type="text" name="city" [(ngModel)]="model.city"  name="city"   placeholder="Enter City" class="form-control" 
+            required>
+            <div class="text-danger" *ngIf="f.controls['city'].dirty && f.controls['city'].invalid">
+              <p *ngIf="f.controls['city'].errors?.['required']">
+                city is required field!
+              </p>
+              
+            </div>
+  
+        </div>
+      
+        <div class="col-md-6 position-relative">
+          <label for="validationTooltip03" class="form-label">State</label>
+          <input type="state" name="state" [(ngModel)]="model.state" name="state" placeholder="State" class="form-control" required>
+          <div class="text-danger" *ngIf="f.controls['state'].dirty && f.controls['state'].invalid">
+            <p *ngIf="f.controls['state'].errors?.['required']">
+              State is required field!
+            </p>
+            
+          </div>
+        </div>
+
+        <div class="col-md-6 position-relative">
+          <label for="validationTooltip03" class="form-label">Postcode</label>
+          <input type="postcode" name="postcode" [(ngModel)]="model.postcode" name="postcode" placeholder="Enter Post Code" class="form-control" 
+            required>
+            <div class="text-danger" *ngIf="f.controls['postcode'].dirty && f.controls['postcode'].invalid">
+              <p *ngIf="f.controls['postcode'].errors?.['required']">
+                Postcode is required field!
+              </p>
+              
+            </div>
+        </div>
+
+  
+      </form>
+    </div>
+  </div>

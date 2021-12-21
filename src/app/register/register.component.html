@@ -1,0 +1,118 @@
+<a routerLink="../login" class="btn btn-link">Back to login</a>
+<div class="card">
+  <div class="card-header">User Registration</div>
+  <div class="card-body">
+    <form class="row g-3 needs-validation" #f="ngForm" novalidate>
+      <div class="form-row">
+        <legend>Personal Details:
+        </legend>
+        <div class="col-md-3 position-relative">
+          <label for="validationTooltip04" class="form-label">Suffix</label>
+          <select class="form-select" name="suffix" [(ngModel)]="model1.suffix" 
+             required>
+            <option selected disabled value="">Choose...</option>
+            <option>...</option>
+            <option *ngFor="let item of suffixData" [value]="item">
+              {{item}}
+            </option>
+          </select>
+          <div class="text-danger" *ngIf="f.controls['suffix'].dirty && f.controls['suffix'].invalid">
+            <p  *ngIf= "f.controls['suffix']?.errors?.['required']"  >
+              Please select a valid suffix.
+            </p>
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="col-md-4 position-relative">
+        <label for="validationTooltip01" class="form-label">First name</label>
+        <input type="text" name="firstname" [(ngModel)]="model1.firstname" class="form-control" minlength="5"
+          required>
+          <div class="text-danger" *ngIf="f.controls['firstname'].dirty && f.controls['firstname'].invalid">
+            <p *ngIf="f.controls['firstname'].errors?.['required']">
+              Name is required field!
+            </p>
+            <p *ngIf="f.controls['firstname'].errors?.['minlength']">
+              Name is required with min length of 5 of alphabet character or white space
+            </p>
+          </div>
+      </div>
+
+      <div class="col-md-4 position-relative">
+        <label for="validationTooltip02" class="form-label">Middle name</label>
+        <input type="text" name="middlename" [(ngModel)]="model1.middlename"  class="form-control"
+           required>
+           <div class="text-danger" *ngIf="f.controls['middlename'].dirty && f.controls['middlename'].invalid">
+            <p *ngIf="f.controls['middlename'].errors?.['required']">
+              Name is required field!
+            </p>
+            
+          </div>
+
+      </div>
+
+      <div class="col-md-4 position-relative">
+        <label for="validationTooltip02" class="form-label">Last name</label>
+        <input type="text" name="lastname" [(ngModel)]="model1.lastname"  minlength="5"class="form-control" 
+          required>
+          <div class="text-danger" *ngIf="f.controls['lastname'].dirty && f.controls['lastname'].invalid">
+            <p *ngIf="f.controls['lastname'].errors?.['required']">
+              Name is required field!
+            </p>
+            <p *ngIf="f.controls['lastname'].errors?.['minlength']">
+              Name is required with min length of 5 of alphabet character or white space
+            </p>
+          </div>
+      </div>
+
+      <div class="col-md-6 position-relative">
+        <label for="validationTooltip03" class="form-label">Email</label>
+        <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="model1.email" class="form-control" 
+          required>
+          <div class="text-danger" *ngIf="f.controls['email'].dirty && f.controls['email'].invalid">
+            <p *ngIf="f.controls['email'].errors?.['required']">
+              Email is a required field!
+             </p>
+            <p *ngIf="f.controls['email'].errors?.['pattern']">
+              This is not a valid Email!!!
+            </p>
+          </div> 
+        
+      </div>
+
+      <div class="col-md-3 position-relative">
+        <label for="validationTooltip05" class="form-label">Mobile Number</label>
+        <input type="text" name="phonenumber" [(ngModel)]="model1.phonenumber" class="form-control" minlength="10"
+           required>
+          <div class="text-danger" *ngIf="f.controls['phonenumber'].dirty && f.controls['phonenumber'].invalid">
+            <p *ngIf="f.controls['phonenumber'].errors?.['required']">
+              Please enter valid mobile number
+            </p>
+            <p *ngIf="f.controls['phonenumber'].errors?.['minlength']">
+              Name is required with maxlength of 10 digits
+            </p>
+          </div>
+      </div>
+      <div  >
+        <app-address [addressTitle]="'Mailing address'" (searchvalue)="onApply($event)"></app-address>
+      <app-address [addressTitle]="'Residency address'" (searchvalue)="onApply($event)"></app-address>
+      <app-address [addressTitle]="addressData" (searchvalue)="onApply($event)"></app-address>
+      
+
+      </div>
+
+      
+        <div *ngIf="!isAddMode">
+          <button type="button" (click)="saveUser(f)"  class="btn btn-primary ">Update User</button>
+        </div>
+        <div *ngIf="isAddMode==true">
+          <button type="button" (click)="saveUser(f)" class="btn btn-primary ">Save User</button>
+          <a routerLink="../login" href="" class="btn btn-link">Cancel</a>
+        </div>
+       
+       
+    </form>
+  </div>
+</div>
+<pre>{{f.value |json}}</pre>
